@@ -338,15 +338,15 @@ const SignUp: React.FC<{}> = (props: any) => {
       setActiveStep((prev) => prev + 1);
     }
     if (activeStep === 3) {
-      //   if (!primaryNumber) {
-      //     setPrimaryNumberError("This Field is required.");
-      //   } else if (!primaryNumberVerified) {
-      //     setPrimaryNumberError("Please verify primary contact number.");
-      //   }
+      if (!primaryNumber) {
+        setPrimaryNumberError("This Field is required.");
+      } else if (!primaryNumberVerified) {
+        setPrimaryNumberError("Please verify primary contact number.");
+      }
 
-      //   if (secondaryNumber && !secondaryNumberVerified) {
-      //     setSecondaryNumberError("Please verify secondary contact number.");
-      //   }
+      if (secondaryNumber && !secondaryNumberVerified) {
+        setSecondaryNumberError("Please verify secondary contact number.");
+      }
 
       if (
         1
@@ -924,7 +924,7 @@ const SignUp: React.FC<{}> = (props: any) => {
                           }}
                         />
                       </div>
-                      {/* <Button
+                      <Button
                         color={
                           phoneNumberVerified
                             ? "success"
@@ -944,7 +944,7 @@ const SignUp: React.FC<{}> = (props: any) => {
                           : phoneNumberVerified === false
                           ? "Try Again"
                           : "Verify"}
-                      </Button> */}
+                      </Button>
                     </div>
                     <div className="field-label margin-top-16">
                       Email address
@@ -971,27 +971,27 @@ const SignUp: React.FC<{}> = (props: any) => {
                           }}
                         />
                       </div>
-                      {/* <Button
-                            variant="contained"
-                            color={
-                            emailVerified
-                                ? "success"
-                                : emailVerified === false
-                                ? "error"
-                                : "primary"
-                            }
-                            size="small"
-                            className="verify-button"
-                            onClick={() =>
-                            !emailVerified && sendOtp(email, "EMAIL")
-                            }
-                        >
-                            {emailVerified
-                            ? "Verified"
+                      <Button
+                        variant="contained"
+                        color={
+                          emailVerified
+                            ? "success"
                             : emailVerified === false
-                            ? "Try Again"
-                            : "Verify"}
-                        </Button> */}
+                            ? "error"
+                            : "primary"
+                        }
+                        size="small"
+                        className="verify-button"
+                        onClick={() =>
+                          !emailVerified && sendOtp(email, "EMAIL")
+                        }
+                      >
+                        {emailVerified
+                          ? "Verified"
+                          : emailVerified === false
+                          ? "Try Again"
+                          : "Verify"}
+                      </Button>
                     </div>
                     <div
                       className="form-fields__other margin-top-16"
