@@ -1,4 +1,4 @@
-export const allStates = [
+export const allStatesAndCities = [
   {
     name: "Andhra Pradesh",
     cities: [
@@ -1396,5 +1396,108 @@ export const allStates = [
       "Srirampore",
       "Adra",
     ],
+  },
+];
+
+export const allStates = [
+  {
+    name: "Andhra Pradesh",
+  },
+  {
+    name: "Arunachal Pradesh",
+  },
+  {
+    name: "Assam",
+  },
+  {
+    name: "Bihar",
+  },
+  {
+    name: "Chhattisgarh",
+  },
+  {
+    name: "Goa",
+  },
+  {
+    name: "Gujarat",
+  },
+  {
+    name: "Haryana",
+  },
+  {
+    name: "Himachal Pradesh",
+  },
+  {
+    name: "Jharkhand",
+  },
+  {
+    name: "Karnataka",
+  },
+  {
+    name: "Kerala",
+  },
+  {
+    name: "Madhya Pradesh",
+  },
+  {
+    name: "Maharashtra",
+  },
+  {
+    name: "Manipur",
+  },
+  {
+    name: "Meghalaya",
+  },
+  {
+    name: "Mizoram",
+  },
+  {
+    name: "Nagaland",
+  },
+  {
+    name: "Odisha",
+  },
+  {
+    name: "Punjab",
+  },
+  {
+    name: "Rajasthan",
+  },
+  {
+    name: "Tamil Nadu",
+  },
+  {
+    name: "Telangana",
+  },
+  {
+    name: "Tripura",
+  },
+  {
+    name: "Uttar Pradesh",
+  },
+  {
+    name: "Uttarakhand",
+  },
+  {
+    name: "West Bengal",
+  },
+];
+
+export const allServices = [
+  {
+    id: 1,
+    serviceName: "Repair",
+  },
+  {
+    id: 2,
+    serviceName: "Accessory",
+  },
+  {
+    id: 3,
+    serviceName: "Reseller",
+  },
+  {
+    id: 4,
+    serviceName: "New Device Only",
   },
 ];

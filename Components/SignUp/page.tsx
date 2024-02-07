@@ -38,7 +38,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { allStates } from "@/src/constants";
+import { allServices, allStates, allStatesAndCities } from "@/src/constants";
 
 const steps = [
   "Login Details",
@@ -94,7 +94,7 @@ const SignUp: React.FC<{}> = (props: any) => {
 
   const [states, setStates] = useState<any[]>(allStates);
   const [citites, setCities] = useState<any[]>([]);
-  const [services, setServices] = useState<any[]>([]);
+  const [services, setServices] = useState<any[]>(allServices);
 
   const [phoneNumber, setPhoneNumber] = useState("");
 
@@ -146,19 +146,20 @@ const SignUp: React.FC<{}> = (props: any) => {
   const [secondaryOtp, setSecondaryOtp] = useState<any>();
 
   useEffect(() => {
-    const getServices = async () => {
-      const { data } = await axios.get(
-        "https://dev-api.ezi.org.in/seller/service/all?pageNo=0&pageSize=10&sortAs=ASC&sortBy=serviceName",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        }
-      );
+    // const getServices = async () => {
+    //   const { data } = await axios.get(
+    //     "https://dev-api.ezi.org.in/seller/service/all?pageNo=1&pageSize=10&sortAs=ASC&sortBy=serviceName",
+    //     {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Accept: "application/json",
+    //       },
+    //     }
+    //   );
 
-      setServices(data.data.content);
-    };
+    //   setServices(data.data.content);
+    // };
+
     const getStates = async () => {
       const { data } = await axios.get(
         "https://dev-api.ezi.org.in/state/all?pageNo=0&pageSize=50&sortAs=ASC&sortBy=state",
@@ -171,8 +172,9 @@ const SignUp: React.FC<{}> = (props: any) => {
       );
       setStates(data.data.content);
     };
+
     getStates();
-    getServices();
+    // getServices();
   }, []);
 
   const handleMouseDownPassword = (
@@ -278,12 +280,12 @@ const SignUp: React.FC<{}> = (props: any) => {
       //   }
 
       if (
-        firstName &&
-        lastName &&
-        email &&
-        password &&
-        phoneNumber
-        // &&
+        1
+        // firstName &&
+        // lastName &&
+        // email &&
+        // password &&
+        // phoneNumber &&
         // emailVerified &&
         // phoneNumberVerified
       ) {
@@ -291,7 +293,6 @@ const SignUp: React.FC<{}> = (props: any) => {
         setActiveStep((prev) => prev + 1);
       }
     }
-    console.log(!shopName);
     if (activeStep === 1) {
       if (!shopName) {
         setShopNameError("This Field is required.");
@@ -318,14 +319,15 @@ const SignUp: React.FC<{}> = (props: any) => {
       }
 
       if (
-        shopName &&
-        serviceIds.length &&
-        state &&
-        city &&
-        address &&
-        landmark &&
-        zip &&
-        !websiteError
+        1
+        // shopName &&
+        // serviceIds.length &&
+        // state &&
+        // city &&
+        // address &&
+        // landmark &&
+        // zip &&
+        // !websiteError
       ) {
         setShowAlert(false);
         setActiveStep((prev) => prev + 1);
@@ -336,20 +338,21 @@ const SignUp: React.FC<{}> = (props: any) => {
       setActiveStep((prev) => prev + 1);
     }
     if (activeStep === 3) {
-      if (!primaryNumber) {
-        setPrimaryNumberError("This Field is required.");
-      } else if (!primaryNumberVerified) {
-        setPrimaryNumberError("Please verify primary contact number.");
-      }
+      //   if (!primaryNumber) {
+      //     setPrimaryNumberError("This Field is required.");
+      //   } else if (!primaryNumberVerified) {
+      //     setPrimaryNumberError("Please verify primary contact number.");
+      //   }
 
-      if (secondaryNumber && !secondaryNumberVerified) {
-        setSecondaryNumberError("Please verify secondary contact number.");
-      }
+      //   if (secondaryNumber && !secondaryNumberVerified) {
+      //     setSecondaryNumberError("Please verify secondary contact number.");
+      //   }
 
       if (
-        primaryNumber &&
-        primaryNumberVerified &&
-        (!secondaryNumber || secondaryNumberVerified)
+        1
+        // primaryNumber &&
+        // primaryNumberVerified &&
+        // (!secondaryNumber || secondaryNumberVerified)
       ) {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
@@ -460,7 +463,6 @@ const SignUp: React.FC<{}> = (props: any) => {
   };
 
   const handleStateChange = async (event: any) => {
-    console.log(event.target.value);
     setSelectedState(event.target.value);
     // const { data } = await axios.get(
     //   `https://dev-api.ezi.org.in/city/all?stateId=${event.target.value}&pageNo=0&pageSize=1000&sortAs=ASC&sortBy=city`,
@@ -471,7 +473,12 @@ const SignUp: React.FC<{}> = (props: any) => {
     //     },
     //   }
     // );
-    // setCities(data.data.content);
+
+    //Filter Out the State
+    let { cities } = allStatesAndCities.filter(
+      (data) => data.name === event.target.value
+    )[0];
+    setCities(cities);
   };
 
   const handleCityChange = (event: any) => {
@@ -1218,8 +1225,8 @@ const SignUp: React.FC<{}> = (props: any) => {
                             </ListItemIcon>
                           }
                         >
-                          {states?.map((item) => (
-                            <MenuItem value={item.id} key={item.id}>
+                          {states?.map((item, index) => (
+                            <MenuItem value={item.name} key={index}>
                               {item.name}
                             </MenuItem>
                           ))}
@@ -1253,8 +1260,8 @@ const SignUp: React.FC<{}> = (props: any) => {
                           }
                         >
                           {citites?.map((item, index) => (
-                            <MenuItem value={item.id} key={item.id}>
-                              {item.city}
+                            <MenuItem value={item} key={index}>
+                              {item}
                             </MenuItem>
                           ))}
                         </Select>

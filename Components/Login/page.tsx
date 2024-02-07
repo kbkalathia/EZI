@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import "../../public/css/Login.css";
 import EmailOutlined from "@mui/icons-material/EmailOutlined";
 import LockOutlined from "@mui/icons-material/LockOutlined";
 import CloseIcon from "@mui/icons-material/Close";
-
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
@@ -19,7 +19,6 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import Image from "next/image";
 
 const Login: React.FC<{}> = (props: any) => {
   const { error } = props;
